@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tesla auth callback</title></head>
+<body style="font-family:sans-serif;padding:1em">
+<h2>Tesla authorization code</h2>
+<p>Copy this code and send it back securely (it expires quickly):</p>
+<textarea id="c" readonly rows="4" style="width:100%;font-size:1.1em"></textarea>
+<p><button onclick="navigator.clipboard.writeText(document.getElementById('c').value)">Copy</button></p>
+<p id="s"></p>
+<script>
+var p=new URLSearchParams(location.search);
+document.getElementById('c').value=p.get('code')||p.get('error')||'(no code in URL)';
+if(p.get('state'))document.getElementById('s').textContent='state: '+p.get('state');
+</script></body></html>
